@@ -340,7 +340,6 @@ template createMaps* =
           sideConveyors()
           timeStrikes()
           sideSorters()
-          topDownConveyors()
 
         if turn in 35..44:
           sideBullets()
@@ -376,7 +375,6 @@ template createMaps* =
         if turn in 185..210:
           sideSorters()
           midBullets()
-          sideWeave()
     )
   )
 
