@@ -9,10 +9,10 @@ const
   mapSize* = 6
   fftSize* = 50
   #copper needed for 1 gamble
-  copperForRoll* = 10
+  copperForRoll* = 1
   #copper received for first map completion
-  completionCopper* = 10
-  defaultMapReward* = 8
+  completionCopper* = 9999
+  defaultMapReward* = 9999
 
   colorAccent* = %"ffd37f"
   colorUi* = %"bfecf3"
