@@ -39,13 +39,13 @@ proc modSize*(num: int): int =
 
 template createMaps* =
   map1 = BeatMap(
-    songName: "Dry Out for xem8k5",
-    music: "dryout",
-    bpm: 145f,
+    songName: "Aritus - For You",
+    music: "forYou",
+    bpm: 126f,
     beatOffset: -80f / 1000f,
     maxHits: 20,
-    copperAmount: 8,
-    fadeColor: %"985eb9",
+    copperAmount: 4,
+    fadeColor: colorPink.mix(colorWhite, 0.5f),
     drawPixel: (proc() =
       patStripes()
       patBeatSquare()
@@ -92,22 +92,22 @@ template createMaps* =
         template vertConveyors() =
           if turn mod(space * 4) == 0:
             for i in signsi():
-              makeConveyor(vec2i(mapSize - ((turn div (space * 4)) mod mapSize), mapSize) * i, vec2i(0, -i), 8)
+              makeConveyor(vec2i(mapSize - ((turn div (space * 4)) mod mapSize), mapSize) * i, vec2i(0, -i), 5)
 
         template vertConveyorsMore() =
           if turn mod(space) == 0:
             for i in signsi():
-              makeConveyor(vec2i(mapSize - ((turn div (space)) mod mapSize) - 1, mapSize) * i, vec2i(0, -i), 4)
+              makeConveyor(vec2i(mapSize - ((turn div (space)) mod mapSize) - 1, mapSize) * i, vec2i(0, -i), 2)
 
         template sideDuos() =
           if turn.mod(space * 8) == 0 and sysTurretShoot.groups.len == 0:
             let side = (turn.mod(space * 8 * 2) == 0).signi
-            makeTurret(vec2i(-mapSize * side, 0), vec2i(side, 0), 5, space * 4)
+            makeTurret(vec2i(-mapSize * side, 0), vec2i(side, 0), 4, space * 4)
             
         template topDuos() =
           if turn.mod(space * 8) == 0 and sysTurretShoot.groups.len == 0:
             for side in signsi():
-              makeTurret(vec2i(0, -mapSize * side), vec2i(0, side), 5, space * 4)
+              makeTurret(vec2i(0, -mapSize * side), vec2i(0, side), 4, space * 4)
         
         template spiral() =
           let s = space
@@ -119,7 +119,7 @@ template createMaps* =
               effectWarn(v.vec2)
               capture v, i:
                 runDelay:
-                  makeConveyor(v, d4i[(i + 2).mod(4)], 5)
+                  makeConveyor(v, d4i[(i + 2).mod(4)], 1)
 
         template horStripes(offset: int) =
           let t = turn - offset
@@ -129,28 +129,24 @@ template createMaps* =
               side = ((t mod (s * 2)) == 0).signi
               y = (t div s).mod(mapSize * 2 + 1) - mapSize
             
-            makeConveyor(vec2i(-mapSize * side, y), vec2i(side, 0), 2)
+            makeConveyor(vec2i(-mapSize * side, y), vec2i(side, 0), 6)
 
-        if turn in 0..50:
+        if turn in 0..35:
           horizontalConveyors()
           topDuos()
         
-        if turn in 50..85:
+        if turn in 35..55:
           midRouter()
-          horStripes(172)
 
-        if turn in 85..120:
+        if turn in 35..85:
           sideDuos()
-          topDuos()
-          midRouter()
         
-        if turn in 120..130:
+        if turn in 60..80:
           vertConveyors()
-          horizontalConveyors()
         
         #"you"
         let next = turn + 1
-        if next in [68, 70, 84, 126, 148, 156, 164, 186, 228, 236, 250, 260, 268, 276, 292, 300, 316, 324, 332, 333, 356, 360, 372, 388, 397, 420, 428]:
+        if next in [68, 84, 148, 164, 228, 236, 260, 268, 292, 300, 324, 332, 356, 372, 388, 397, 420, 428]:
           for pos in d4():
             effectWarn((pos * mapSize).vec2, life = beatSpacing())
           runDelay:
@@ -172,22 +168,17 @@ template createMaps* =
               for s in signsi():
                 makeBullet(vec2i(mapSize, val * s), vec2i(-1, 0), "bullet-pink")
         
-        if turn in 130..164:
+        if turn in 117..164:
           horizontalConveyors(3)
-          midRouter()
         
         if turn in 117..180:
           topDuos()
-          horizontalConveyors(6)
-          vertConveyors()
         
         if turn in 171..223:
           horStripes(172)
-          moveRouter(225)
         
         if turn in 225..290:
           moveRouter(225)
-          spiral()
         
         if turn == 290:
           for pos in d4edge():
@@ -202,19 +193,12 @@ template createMaps* =
 
         if turn in 291..372:
           topDuos()
-          horizontalConveyors()
-          moveRouter(225)
         
         if turn in 372..420:
           spiral()
-          midRouter()
         
         if turn in 420..437:
           midRouter()
-          sideDuos()
-          topDuos()
-          spiral()
-          moveRouter(225)
     )
   )
 
