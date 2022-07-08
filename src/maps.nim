@@ -143,10 +143,12 @@ template createMaps* =
         if turn in 35..85:
           sideDuos()
           topDuos()
+          spiral()
+        
         
         if turn in 60..80:
           vertConveyors()
-          moveRouter(65)
+          moveRouter(60)
         
         #"you"
         let next = turn + 1
@@ -165,6 +167,8 @@ template createMaps* =
         
         #bullet walls
         if turn in 91..116:
+          sideDuos()
+          topDuos()
           let s = 4
           if turn mod s == 0:
             let side = (turn div s).mod(2) == 1
@@ -181,6 +185,7 @@ template createMaps* =
         if turn in 117..180:
           topDuos()
           sideDuos()
+          horizontalConveyors(1)
         
         if turn in 171..223:
           horStripes(172)
