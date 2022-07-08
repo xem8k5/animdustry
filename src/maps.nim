@@ -42,10 +42,10 @@ template createMaps* =
     songName: "Dry Out for xem8k5",
     music: "dryout",
     bpm: 145f,
-    beatOffset: 0f / 1000f,
+    beatOffset: -80f / 1000f,
     maxHits: 20,
     copperAmount: 8,
-    fadeColor: colorRed.mix(colorWhite, 0.5f),
+    fadeColor: %"985eb9",
     drawPixel: (proc() =
       patStripes()
       patBeatSquare()
