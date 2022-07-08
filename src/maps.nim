@@ -40,7 +40,7 @@ proc modSize*(num: int): int =
 template createMaps* =
   map1 = BeatMap(
     songName: "Dry Out for xem8k5",
-    music: "forYou",
+    music: "dryout",
     bpm: 145f,
     beatOffset: 0f / 1000f,
     maxHits: 20,
