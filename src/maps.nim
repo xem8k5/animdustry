@@ -132,17 +132,21 @@ template createMaps* =
             makeConveyor(vec2i(-mapSize * side, y), vec2i(side, 0), 6)
 
         if turn in 0..35:
-          horizontalConveyors()
+          horizontalConveyors(6)
+          vertConveyorsMore()
           topDuos()
         
         if turn in 35..55:
+          horizontalConveyors()
           midRouter()
 
         if turn in 35..85:
           sideDuos()
+          topDuos()
         
         if turn in 60..80:
           vertConveyors()
+          moveRouter(65)
         
         #"you"
         let next = turn + 1
@@ -153,6 +157,7 @@ template createMaps* =
             for pos in d4():
               for dir in d8():
                 makeBullet(pos * mapSize, dir, "bullet-pink")
+        
 
         if turn == 35:
           for i in signsi():
@@ -170,15 +175,20 @@ template createMaps* =
         
         if turn in 117..164:
           horizontalConveyors(3)
+          spiral()
+          vertConveyors()
         
         if turn in 117..180:
           topDuos()
+          sideDuos()
         
         if turn in 171..223:
           horStripes(172)
+          horizontalConveyors(5)
         
         if turn in 225..290:
           moveRouter(225)
+          topDuos()
         
         if turn == 290:
           for pos in d4edge():
@@ -190,15 +200,22 @@ template createMaps* =
         
         if turn in 291..360:
           vertConveyorsMore()
+          moveRouter(300)
 
         if turn in 291..372:
           topDuos()
+          horStripes(300)
         
         if turn in 372..420:
           spiral()
+          vertConveyorsMore()
+          topDuos()
         
         if turn in 420..437:
           midRouter()
+          horStripes(450)
+          topDuos()
+          sideDuos()
     )
   )
 
