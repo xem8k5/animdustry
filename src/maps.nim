@@ -229,7 +229,7 @@ template createMaps* =
     music: "stoplight",
     bpm: 85f,
     beatOffset: 0f / 1000f,
-    maxHits: 12,
+    maxHits: 25,
     copperAmount: 5,
     fadeColor: %"985eb9",
     drawPixel: (proc() =
@@ -338,19 +338,27 @@ template createMaps* =
 
         if turn in 0..38:
           sideConveyors()
+          timeStrikes()
+          sideSorters()
+          topDownConveyors()
 
         if turn in 35..44:
           sideBullets()
+          midBullets()
 
         if turn in 41..60:
           timeStrikes()
+          crossRouters()
         
         if turn in 60..85:
           topDownConveyors()
+          sideConveyors()
         
         #fade in
         if turn == 95 or turn == 159:
           midBullets()
+          quadDuos()
+          timeStrikes()
         
         if turn in 100..120:
           sideSorters()
@@ -359,12 +367,16 @@ template createMaps* =
         #132, it is safe to begin next pattern
         if turn == 132:
           quadDuos()
+          topDownConveyors()
         
         if turn in 160..180:
           crossRouters()
+          sideSorters()
         
         if turn in 185..210:
           sideSorters()
+          midBullets()
+          sideWeave()
     )
   )
 
