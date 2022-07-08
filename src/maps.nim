@@ -1,7 +1,7 @@
 import sugar, vars, core, types, math
 
 var
-  map6*, map2*, map3*, map4*, map5*: Beatmap
+  map1*, map2*, map3*, map4*, map5*: Beatmap
 
 template delayBullet*(pos: Vec2i, dir: Vec2i, tex = "") =
   let 
@@ -38,7 +38,7 @@ proc modSize*(num: int): int =
   num.mod(mapSize * 2 + 1) - mapSize
 
 template createMaps* =
-  map6 = BeatMap(
+  map1 = BeatMap(
     songName: "Dry Out for xem8k5",
     music: "dryout",
     bpm: 145f,
