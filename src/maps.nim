@@ -493,45 +493,64 @@ template createMaps* =
 
         if turn in 0..39:
           sideConveyors()
+          multiLasers()
         
         if turn in 41..90:
           lasers()
+          swipeBullets(50)
         
         if turn == 97 or turn == 130:
           multiLasers()
+          topConveyors()
         
         if turn in 90..140:
           sideRouters(90)
+          lasers()
         
         if turn in 148..161:
           trackLasers()
+          sideConveyors()
         
         if turn in 161..186:
+          topConveyors()
           swipeBullets(161)
         
         if turn in 186..210:
           sideLasers()
+          
+        if turn == 200:
+          multiLasers()
         
         if turn in 208..245:
           topConveyors()
+          sideConveyors()
         
         if turn == 254:
           conveyorWall(0)
+          multiLasers()
         
         if turn == 260:
           conveyorWall(1)
+          multiLasers()
 
         if turn == 266:
           conveyorWall(2)
+          multiLasers()
         
         if turn in 265..300:
           sideSorters()
+          lasers()
         
         if turn in 297..338:
           lasers()
+          topConveyors()
+          sideConveyors()
         
         if turn == 323:
           conveyorWall(3)
+          lasers()
+          multiLasers()
+          sideLasers()
 
     )
   )
